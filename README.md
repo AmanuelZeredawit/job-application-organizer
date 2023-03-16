@@ -39,7 +39,7 @@ pip install -r requirements.txt
 4. Run app.py
 
 ```bash
-streamlit run deployment/app.py
+streamlit run app.py
 
 ```
 
