@@ -1,7 +1,7 @@
 # job-application-organizer
 
 This  app is developed for job appplicant to organize their job application processes.
-It is especially designed for IT Professional reside in Belgium. Other users can customize
+It is especially designed for IT Professionals, who reside in Belgium. Other users can customize
 the app to meet your needs, probably you need to change the Regions, provinces, Roles variables
 in the app.py file.
 
@@ -12,15 +12,15 @@ in the app.py file.
 ### Deployment
 
 For this version of the app, users can either fork and launch in streamlit cloud or clone it 
-and use it locally by creating virtual enviroment and installing the necessary libraries and 
-an approach for both methods is mentioned in this document.
+and use it locally by creating virtual enviroment and installing the necessary libraries. 
+An approach for both methods is mentioned in this document.
 
 For the coming version, I am going to  include user management tools that user can login with 
 their credential and use the app from the cloud with out forking or cloning to their machines.
 
 #### 1. Deploying to the cloud
 
-You can fork this repo and deploy your  forked repo on [streamlit cloud ](https://streamlit.io/cloud)
+You can fork this repo and deploy your forked repo on [streamlit cloud ](https://streamlit.io/cloud)
 
 Deployment steps
 1. created an account in streamlit cloud
@@ -29,7 +29,7 @@ Deployment steps
 4. add your forked repo name to it and ready to go
 
 Below try the  app I deployed on streamlit cloud.
- [Job application Organizer app](https://amanuelzeredawit-job-application-organizer-app-luy270.streamlit.app/)
+ [Job application organizer app](https://amanuelzeredawit-job-application-organizer-app-luy270.streamlit.app/)
 
 
 #### 2. Deploying locally
@@ -80,7 +80,7 @@ then you have to go to the "Register" section in the menu bar. and fill the fiel
 for fields like 'Company name" you have to fill mondatory others you can leave it blank, if you don't think
 are necessary.
 
-[Register menu ](images/register.png)
+![Register menu ](images/register.png)
 
 
 2. May be you have feedback from the recruiter regarding the application , so you need to update your application.
@@ -96,6 +96,10 @@ are necessary.
    * "add interview date" you can add an interview date for an application
    * "delete application" you can delete a job application from the file
    for all the three methods you should put the company Id in the field bar otherwise you will get an alerbox
+
+![Edit menu](images/edit.png)
+
+
 
 
 3. In the home menu you can see a dashboard showing the summary of your application. the parameters of the plot are customizable. 
