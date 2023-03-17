@@ -9,6 +9,7 @@ in the app.py file.
 ![Home Screen](images/home.png)
 
 
+
 ### Deployment
 
 For this version of the app, users can either fork and launch in streamlit cloud or clone it 
@@ -80,7 +81,11 @@ then you have to go to the "Register" section in the menu bar. and fill the fiel
 for fields like 'Company name" you have to fill mondatory others you can leave it blank, if you don't think
 are necessary.
 
+
+
 ![Register menu ](images/register.png)
+
+
 
 
 2. May be you have feedback from the recruiter regarding the application , so you need to update your application.
@@ -91,11 +96,13 @@ are necessary.
 
    You can choose either "add feedback" or "add interview_date" or "delete application"
 
-   * "add feedback" you can add the status ["positive", "negative", "waiting"] and write the detail of the feedback
-      you get from the recruiter.
-   * "add interview date" you can add an interview date for an application
-   * "delete application" you can delete a job application from the file
-   for all the three methods you should put the company Id in the field bar otherwise you will get an alerbox
+* "add feedback" you can add the status ["positive", "negative", "waiting"] and write the detail of the feedback
+ you get from the recruiter.
+* "add interview date" you can add an interview date for an application
+* "delete application" you can delete a job application from the file
+  for all the three methods you should put the company Id in the field bar otherwise you will get an alerbox
+
+
 
 ![Edit menu](images/edit.png)
 
