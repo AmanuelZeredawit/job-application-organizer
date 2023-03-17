@@ -40,8 +40,6 @@ def main():
     file_name = "applications.csv"
     file_path = os.path.join(os.getcwd(), file_name)
 
-
-
     # visualization functions
     def plot_pie_chart(df, column, title):
         
@@ -52,8 +50,6 @@ def main():
                         showlegend=False)
         st.plotly_chart(fig1, use_container_width=True)
             
-            
-
     def plot_bar_chart(df, column_x, column_y, title):
         if column_y =="Applications":
             fig_3 = px.bar(df.groupby([column_x]).size(), width=600, height=400)
@@ -85,12 +81,6 @@ def main():
         else:
             st.sidebar.info(f'It is nice day today. You make {today_applications_count} applications', icon="ℹ️")
 
-
-        
-
-
-    
-
     # basic file operations functions
     def read_file(file_name): 
         data = pd.read_csv(file_name, index_col=0)
@@ -110,7 +100,6 @@ def main():
         else:
             return True
 
-    
     # functions for styling the components
     def local_css(file_name):
         with open(file_name) as f:
@@ -125,8 +114,6 @@ def main():
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
     icon("search")
 
-
-
     # Create a new CSV file
     if not os.path.exists(file_path):
         with open(file_path, 'w', newline='') as file:
@@ -136,7 +123,6 @@ def main():
                              'Job_link', 'Language', 'Possibility',
                              'Job_requirements','Job_description', 'Feedback', 'Status', 'Feedback_date','Interview_date'])                 
   
-
     choice = st.sidebar.selectbox('Menu', menu)
     if choice == 'Home':
         df = read_file(file_name)
@@ -197,14 +183,10 @@ def main():
 
                 except:
                     st.write('error, no interview scheduled at all')
-
             
             # notify  if you don't hit the daily target
             is_minimum_reached(df)
-           
-
-  
-        
+                 
 
     elif choice == 'Register':
         company_name = st.sidebar.text_input('Company Name *')
@@ -230,11 +212,7 @@ def main():
                       'Source': source, 'Job_link': job_link,'Language': lan, 
                       'Possibility':possibility, 'Job_requirements': job_requirements, 
                       'Job_description': job_descripition, 'Feedback': '', 'Status': 'Waiting', 
-                      'Feedback_date': '', 'Interview_date': ''}
-        
-        
-        
-        
+                      'Feedback_date': '', 'Interview_date': ''}     
         
         if st.button('Save', key='save_btn'):
             if len(company_name) > 1:
@@ -245,10 +223,7 @@ def main():
                 save_file(df)
                            
             else:
-                st.write('please enter Company name') 
-
-          
-
+                st.write('please enter Company name')     
 
     elif choice =='Edit':
         df = read_file(file_name)
@@ -261,8 +236,7 @@ def main():
                     df = df[df['Company_name'].str.contains(selected, case=False)]
                     st.write(df.head())
                 else:
-                    AlertBox(f'You have not applied  to company with the keyword {selected} yet')
-            
+                    AlertBox(f'You have not applied  to company with the keyword {selected} yet')        
 
             id = st.sidebar.text_input('Application Id', key='id1')
             st.sidebar.subheader("Select method")
@@ -292,7 +266,6 @@ def main():
                             AlertBox('index value must be integer')
                     else:
                         AlertBox("fill the fields with proper values")
-
 
             if edit == 'add interview date':
                 interview_date = st.sidebar.date_input("Interview date", date.today())
@@ -324,8 +297,6 @@ def main():
                     else:
                         AlertBox('first enter value for index')
                     
-
-
            
 
 if __name__ == '__main__':
