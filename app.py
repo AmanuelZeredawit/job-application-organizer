@@ -28,14 +28,18 @@ def main():
     provinces = ['Brussels', 'Flemish', 'Antwerp', 'Brabant', 'West Flanders', 'East Flanders', 
                  'Hainaut', 'Wallonia Brabant', 'Liège', 'Limburg', 'Luxembourg', 'Namur', 'not mentioned']
     sources = ['linkedin', 'indeed','ictjob', 'Stepstone','Talent','becode', 'company portal', 'email', 'other']
-    results = ['Negative', 'Positive', 'waiting','Negative after interview']
+    results = ['Waiting','Negative', 'Positive']
     column = ['Role', 'Region', 'Province', 'Company_type', 'Status', 'Source']
 
     positive_feed_back_count = 0
     negative_feed_back_count = 0
     waiting_feed_back_count = 0
-    interviews_count = 0
     daily_minimum = 3 # the minimum number of application you can make in a day
+
+    # Set the file name and path
+    file_name = "applications.csv"
+    file_path = os.path.join(os.getcwd(), file_name)
+
 
 
     # visualization functions
@@ -93,7 +97,7 @@ def main():
         return data
     
     def save_file(df):
-        df.to_csv('example.csv', index=True)
+        df.to_csv(file_name, index=True)
     
     def delete_job(df, index_number):
         df = df.drop(index=index_number)
@@ -123,20 +127,15 @@ def main():
 
 
 
-    # Set the file name and path
-    file_name = "example.csv"
-    file_path = os.path.join(os.getcwd(), file_name)
-
     # Create a new CSV file
     if not os.path.exists(file_path):
         with open(file_path, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['Date', 'Company_name', 'Company_type','Region', 'Province',
                              'Locality', 'Role', 'Job_title','Contract_type','Source', 
-                             'Job_link', 'Language', 'Possibility', 'Sta', 'Feed',
-                             'Job_requirements', 'Job_description'])                 
-    
-
+                             'Job_link', 'Language', 'Possibility',
+                             'Job_requirements','Job_description', 'Feedback', 'Status', 'Feedback_date','Interview_date'])                 
+  
 
     choice = st.sidebar.selectbox('Menu', menu)
     if choice == 'Home':
@@ -149,10 +148,9 @@ def main():
                 positive_feed_back_count = df['Status'].value_counts()['Positive']
             if df['Status'].str.contains('Negative', case=False).any():
                 negative_feed_back_count = df['Status'].value_counts()['Negative'] 
-            if df['Status'].str.contains('interview', case=False).any():
-                interviews_count = df['Status'].value_counts()['interview'] 
-            if df['Status'].str.contains('waiting', case=False).any():
-                waiting_feed_back_count = df['Status'].value_counts()['waiting'] 
+            
+            if df['Status'].str.contains('Waiting', case=False).any():
+                waiting_feed_back_count = df['Status'].value_counts()['Waiting'] 
             
             # dashboard summary
             col1, col2, col3, col4 = st.columns(4)  
@@ -167,6 +165,10 @@ def main():
                 st.title(positive_feed_back_count)
                 st.write("POSITIVE")
             with col4:
+                try: 
+                    interviews_count =df[df['Interview_date'] >= str(date.today())].shape[0]
+                except:
+                    interviews_count = 0
                 st.title(interviews_count)
                 st.write('INTERVIEWS')
             
@@ -226,8 +228,11 @@ def main():
                       'Region':region, 'Province': province, 'Locality': locality, 
                       'Role': role,  'Job_title': job_title, 'Contract_type': contract_type,
                       'Source': source, 'Job_link': job_link,'Language': lan, 
-                      'Possibility':possibility, 'Sta': 'applied', 'Feed': ' ', "Feedback_d": ' ', 
-                      'Job_requirements': job_requirements, 'Job_description': job_descripition}
+                      'Possibility':possibility, 'Job_requirements': job_requirements, 
+                      'Job_description': job_descripition, 'Feedback': '', 'Status': 'Waiting', 
+                      'Feedback_date': '', 'Interview_date': ''}
+        
+        
         
         
         
